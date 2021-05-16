@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0px !important;
+        }
+
+        .video-frame h3 {
+            margin-top: 0px;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        .video-frame img {
+            height: 75vh;
+            width: 100%;
+        }
+
+        .result iframe {
+            height: 40px;
+            width: 50px;
+        }
+
+        .result {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .result a {
+            font-size: 20px;
+            margin-left: 15px;
+            text-decoration: none;
+            background: aqua;
+            padding: 9px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            color: #000000;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="video-frame">
+        <div class="col-lg-8  offset-lg-2">
+            <h3 class="mt-5">Live Streaming</h3>
+            <img src="{{ url_for('video_feed') }}">
+        </div>
+        <div class="result">
+            <iframe id="iframe" src="{{ url_for('video_result') }}"></iframe>
+            <a href="#" onclick="getIframeContent('iframe');">Get Content</a>
+        </div>
+    </div>
+    <script>
+        window.setInterval(function () {
+            reloadIFrame()
+        }, 500);
+
+        function reloadIFrame() {
+            console.log('reloading..');
+            document.getElementById('iframe').contentWindow.location.reload();
+        }
+        function getIframeContent(frameId) {
+            var frameObj =
+                document.getElementById(frameId);
+
+            var frameContent = frameObj.
+                //contentWindow.document.body.innerHTML;
+                contentWindow.document.body.innerHTML;
+            var res = frameContent.slice(-7, -6);
+            if (res == '1') {
+                window.location = 'https://www.youtube.com/'
+            }
+            else if (res == '2') {
+                window.location = 'https://in.yahoo.com/'
+            }
+            else if (res == '3') {
+                window.location = 'https://in.yahoo.com/'
+            }
+            else if (res == '4') {
+                window.location = "https://www.amazon.in/"
+            }
+            else if (res == '5') {
+                window.location = 'https://www.flipkart.com/'
+            }
+            //alert("frame content : " + res);
+        }
+    </script>
+</body>
+
+</html>
