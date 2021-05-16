@@ -20,7 +20,7 @@ for imPath in myList:
     overlayList.append(image)
 
 
-camera = cv2.VideoCapture(0)
+camera1 = cv2.VideoCapture(0)
 
 pTime = 0
 
@@ -28,18 +28,21 @@ detector = htm.handDetector(detectionCon=0.75)
 
 tipIds = [4, 8, 12, 16, 20]
 
-def youtubeUrlFor():
+@app.route('/camera.html')
+def camera():
+    return render_template('camera.html')
+"""def youtubeUrlFor():
     return render_template('youtube.html')
 @app.route('/youtuberedirect')
 def youtubeRedirect():
     return redirect('https://www.youtube.com/')
 @app.route('/mailRedirect')
 def mailRedirect():
-    return redirect('https://mail.google.com/mail/u/0/#inbox')
+    return redirect('https://mail.google.com/mail/u/0/#inbox')"""
 
 def gen_frames():  
     while True:
-        success, frame = camera.read()  # read the camera frame
+        success, frame = camera1.read()  # read the camera frame
         if not success:
             break
         else:
@@ -81,8 +84,8 @@ def gen_frames():
                 #fps = 0
                 cv2.putText(frame, f'FPS: {int(fps)}', (400, 70), cv2.FONT_HERSHEY_PLAIN,
                             3, (255, 0, 0), 3)
-                if totalFingers == 1:
-                    youtubeRedirect()
+                """if totalFingers == 1:
+                    youtubeRedirect()"""
 
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
@@ -95,8 +98,8 @@ def get_fingers():
 @app.route('/video_result')
 def video_result():
     print('console',globalTotalFingers)
-    if globalTotalFingers == 1:
-        youtubeUrlFor()
+    """if globalTotalFingers == 1:
+        youtubeUrlFor()"""
     return Response(stream_with_context(get_fingers()),mimetype='text')
 @app.route('/')
 def index():

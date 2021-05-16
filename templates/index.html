@@ -1,100 +1,232 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
-    <style>
-        body {
-            margin: 0px !important;
-        }
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Hand Gesture Recognition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Hand Gesture Recognition" />
+  <meta name="author" content="Somnium Nostri" />
+  <link rel="shortcut icon" href="{{url_for('static',filename='styles/favicon.ico')}}">
 
-        .video-frame h3 {
-            margin-top: 0px;
-            font-size: 30px;
-            text-align: center;
-        }
+  <!--<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">-->
+  <link rel="stylesheet" href="{{url_for('static',filename='styles/css/normalize.css')}}" type="text/css">
+  <link rel="stylesheet" href="{{url_for('static',filename='styles/css/bootstrap.min.css')}}" type="text/css">
+  <link rel="stylesheet" href="{{url_for('static',filename='styles/css/owl.carousel.css')}}" type="text/css">
+  <link rel="stylesheet" href="{{url_for('static',filename='styles/css/magnific-popup.css')}}" type="text/css">
+  <link rel="stylesheet" href="{{url_for('static',filename='styles/css/main.css')}}" type="text/css">
 
-        .video-frame img {
-            height: 75vh;
-            width: 100%;
-        }
-
-        .result iframe {
-            height: 40px;
-            width: 50px;
-        }
-
-        .result {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 30px;
-        }
-
-        .result a {
-            font-size: 20px;
-            margin-left: 15px;
-            text-decoration: none;
-            background: aqua;
-            padding: 9px;
-            border: 1px solid #000;
-            border-radius: 5px;
-            color: #000000;
-            font-weight: 600;
-        }
-    </style>
+  <script src="static/js/modernizr.custom.js"></script>
+  <script async src='../../../cdn-cgi/bm/cv/669835187/api.js'></script>
 </head>
 
-<body>
-    <div class="video-frame">
-        <div class="col-lg-8  offset-lg-2">
-            <h3 class="mt-5">Live Streaming</h3>
-            <img src="{{ url_for('video_feed') }}">
-        </div>
-        <div class="result">
-            <iframe id="iframe" src="{{ url_for('video_result') }}"></iframe>
-            <a href="#" onclick="getIframeContent('iframe');">Get Content</a>
-        </div>
+<body class="page">
+
+  <div class="lm-animated-bg"></div>
+
+  <!-- Loading animation -->
+  <div class="preloader">
+    <div class="preloader-animation">
+      <div class="preloader-spinner">
+      </div>
     </div>
-    <script>
-        window.setInterval(function () {
-            reloadIFrame()
-        }, 500);
+  </div>
+  <!-- /Loading animation -->
 
-        function reloadIFrame() {
-            console.log('reloading..');
-            document.getElementById('iframe').contentWindow.location.reload();
-        }
-        function getIframeContent(frameId) {
-            var frameObj =
-                document.getElementById(frameId);
+  <!-- Scroll To Top Button -->
+  <div class="lmpixels-scroll-to-top"><i class="lnr lnr-chevron-up"></i></div>
+  <!-- /Scroll To Top Button -->
 
-            var frameContent = frameObj.
-                //contentWindow.document.body.innerHTML;
-                contentWindow.document.body.innerHTML;
-            var res = frameContent.slice(-7, -6);
-            if (res == '1') {
-                window.location = 'https://www.youtube.com/'
-            }
-            else if (res == '2') {
-                window.location = 'https://in.yahoo.com/'
-            }
-            else if (res == '3') {
-                window.location = 'https://in.yahoo.com/'
-            }
-            else if (res == '4') {
-                window.location = "https://www.amazon.in/"
-            }
-            else if (res == '5') {
-                window.location = 'https://www.flipkart.com/'
-            }
-            //alert("frame content : " + res);
-        }
-    </script>
+  <div class="page-scroll">
+    <div id="page_container" class="page-container bg-move-effect" data-animation="transition-flip-in-right">
+
+      <!-- Header -->
+      <header id="site_header" class="header">
+        <div class="header-content clearfix">
+
+          <!-- Text Logo -->
+          <div class="text-logo">
+            <a href="/">
+              <div class="logo-symbol">H</div>
+              <div class="logo-text">Hand Gesture <span>Recognition</span></div>
+            </a>
+          </div>
+          <!-- /Text Logo -->
+
+          <!-- Navigation -->
+          <div class="site-nav mobile-menu-hide">
+            <ul class="leven-classic-menu site-main-menu">
+              <li class="menu-item">
+                <a href="./camera.html">Camera On</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Mobile Menu Toggle -->
+          <a class="menu-toggle mobile-visible">
+            <i class="fa fa-bars"></i>
+          </a>
+          <!-- Mobile Menu Toggle -->
+        </div>
+      </header>
+      <!-- /Header -->
+
+      <div id="main" class="site-main">
+        <div id="main-content" class="single-page-content">
+          <div id="primary" class="content-area">
+            <div id="content" class="page-content site-content single-post" role="main">
+              <!-- Home Page Top Part -->
+              <div class="row">
+                <div class=" col-xs-12 col-sm-12">
+                  <div class="home-content">
+                    <div class="row flex-v-align">
+
+                      <div class="col-sm-12 col-md-5 col-lg-5">
+                        <div class="home-photo">
+                          <div class="hp-inner" style="background-image: url('static/styles/img/93186.jpg');">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-12 col-md-7 col-lg-7">
+                        <div class="home-text hp-left">
+                          <div class="owl-carousel text-rotation">
+                            <div class="item">
+                              <h4>Easy To Use</h4>
+                            </div>
+
+                            <div class="item">
+                              <h4>Upcomming Future</h4>
+                            </div>
+                          </div>
+
+                          <h1>Hand Gesture Recognition</h1>
+                          <p>Fusce tempor magna mi, non egestas velit ultricies nec. Aenean convallis, risus non
+                            condimentum gravida, odio mauris ullamcorper felis, ut venenatis purus ex eu mi. Quisque
+                            imperdiet lacinia urna, a placerat sapien pretium eu.</p>
+
+                          <div class="home-buttons">
+                            <a href="./camera.html" target="_blank" class="btn btn-primary">Recognition</a>
+                            <!-- <a href="#" target="_self" class="btn btn-secondary">Contact</a> -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Home Page Top Part -->
+
+              <!-- Services -->
+              <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                  <div class="p-50"></div>
+
+                  <div class="block-title">
+                    <h2>What I Do</h2>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                  <div class="info-list-w-icon">
+                    <div class="info-block-w-icon">
+                      <div class="ci-icon">
+                        <i class="linecons linecons-pen"></i>
+                      </div>
+
+                      <div class="ci-text">
+                        <h4>Copywrite</h4>
+                        <p>Mauris neque libero, aliquet vel mollis nec, euismod sed tellus. Mauris convallis dictum elit
+                          id volutpat. Vivamus blandit, dolor vitae lacinia maximus, risus velit vehicula odio, a
+                          tincidunt turpis turpis tempus ex.</p>
+                      </div>
+                    </div>
+
+                    <div class="info-block-w-icon">
+                      <div class="ci-icon">
+                        <i class="linecons linecons-display"></i>
+                      </div>
+
+                      <div class="ci-text">
+                        <h4>Web Design</h4>
+                        <p>Mauris neque libero, aliquet vel mollis nec, euismod sed tellus. Mauris convallis dictum elit
+                          id volutpat. Vivamus blandit, dolor vitae lacinia maximus, risus velit vehicula odio, a
+                          tincidunt turpis turpis tempus ex.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6">
+                  <div class="info-list-w-icon">
+
+                    <div class="info-block-w-icon">
+                      <div class="ci-icon">
+                        <i class="linecons linecons-shop"></i>
+                      </div>
+
+                      <div class="ci-text">
+                        <h4>Ecommerce</h4>
+                        <p>Mauris neque libero, aliquet vel mollis nec, euismod sed tellus. Mauris convallis dictum elit
+                          id volutpat. Vivamus blandit, dolor vitae lacinia maximus, risus velit vehicula odio, a
+                          tincidunt turpis turpis tempus ex.</p>
+                      </div>
+                    </div>
+
+                    <div class="info-block-w-icon">
+                      <div class="ci-icon">
+                        <i class="linecons linecons-megaphone"></i>
+                      </div>
+
+                      <div class="ci-text">
+                        <h4>Marketing</h4>
+                        <p>Mauris neque libero, aliquet vel mollis nec, euismod sed tellus. Mauris convallis dictum elit
+                          id volutpat. Vivamus blandit, dolor vitae lacinia maximus, risus velit vehicula odio, a
+                          tincidunt turpis turpis tempus ex.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /Services -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="site-footer clearfix">
+        <div class="footer-social">
+
+        </div>
+
+        <div class="footer-copyrights">
+          <p>© 2020 All rights reserved. Somnium Nostri.</p>
+        </div>
+      </footer>
+      <!-- /Footer -->
+
+    </div>
+  </div>
+
+  <script src="static/styles/js/jquery-2.1.3.min.js"></script>
+  <script src="static/styles/js/imagesloaded.pkgd.min.js"></script>
+  <script src='../../../../www.google.com/recaptcha/api.js'></script>
+  <script src="static/styles/js/bootstrap.min.js"></script>
+  <script src='static/styles/js/jquery.shuffle.min.js'></script>
+  <script src='static/styles/js/masonry.pkgd.min.js'></script>
+  <script src='static/styles/js/owl.carousel.min.js'></script>
+  <script src="static/styles/js/jquery.magnific-popup.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrDf32aQTCVENBhFJbMBKOUTiUAABtC2o"></script>
+  <script src="static/styles/js/jquery.googlemap.js"></script>
+  <script src="static/styles/js/validator.js"></script>
+  <script src="static/styles/js/main.js"></script>
+  <script
+    type="text/javascript">(function () { window['__CF$cv$params'] = { r: '6504c2842b68de25', m: '8ebefcbf854b0bdd348c73655dd00606fca6aa12-1621169721-1800-AeIDzvIAX5Q+SlAOCi+A1yPtUXChvU3rchEUx7P/HabRc9JZOJVbFl1beEAx0AGHCX/K6+mfIYph5oDS1fAfWbSoEqsI5hqL7urDMpoPIzGH9+CF/T1YONydt/gu8YuS+9fbQOXsODYNv5nBtpIVj2afUAxcDBqq4rgCOP8fTJnh', s: [0x99bcc115ed, 0x95dcbf25b4], } })();</script>
 </body>
 
 </html>
